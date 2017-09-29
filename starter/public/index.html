@@ -10,6 +10,17 @@
 <script>
 // To initiate handshake between client and server
 var socket = io('http://localhost:8581');
+
+socket.on('message-from-server',function(event){
+	document.body.appendChild(
+		document.createTextNode(event.greeting));
+
+	socket.emit('message-from-client',{
+		greeting:'Hello from client'
+	});
+});
+
+
 </script>
 </body>
 </html>

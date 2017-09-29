@@ -12,6 +12,14 @@ app.use(express.static(path.join(__dirname, "public")));
 // connections between client and server
 io.on('connection', function(socket){
 	console.log('new connection has been made');
+
+	socket.emit('message-from-server',{
+		greeting: 'Hello from server'
+	})
+
+	socket.on('message-from-client', function(msg){
+		console.log(msg);
+	})
 })
 
 server.listen(port, function(){
