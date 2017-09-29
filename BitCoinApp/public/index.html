@@ -58,7 +58,33 @@
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 	// To initiate handshake between client and server
+		var socket = io('https://websocket.btcchina.com/');
+        socket.emit('subscribe', 'marketdata_cnybtc');
+        socket.on('connect', function() {
+          socket.on('ticker', function(data) {
 
+            console.log(data);
+
+            // Update the Market Name
+            $('#market').text(data.ticker.market);
+
+            // Update the High selling price
+            $('#high-count').text(data.ticker.high);
+
+            // Update the low selling price
+            $('#low-count').text(data.ticker.low);
+
+            // Update the Buy price
+            $('#buy').text(data.ticker.buy);
+
+            // Update the Sell price
+            $('#sell').text(data.ticker.sell);
+
+            // Update the Volume price
+            $('#volume').text(data.ticker.vol);
+
+			});
+		});
 	</script>
 </body>
 </html>

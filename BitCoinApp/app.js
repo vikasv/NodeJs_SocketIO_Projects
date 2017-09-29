@@ -11,4 +11,4 @@ app.use(express.static(path.join(__dirname, "public")));
 // connections between client and server
 server.listen(port, function(){
 	console.log("Listening on port : " + port);
-})
+});
